@@ -1,30 +1,113 @@
-# APP
+### DESCRIÇÃO
+Gerador tickets servirá pra nos permitir gerar tickets e links automáticos 
+para serem compartilhado nas redes
+sociais.
+Basicamente o usuário entra na aplicação informa o seu nome, email, area de atuação e carrega
+uma foto de perfil.
+Lhe é gerado um ticket e um link para ele compartilhar nas redes sociais.
 
-GymPass style app.
 
-## RFs (Requisitos Funcionais)
 
-- [x] Deve ser possível se cadastrar;
-- [x] Deve ser possível se autenticar;
-- [x] Deve ser possível obter o perfil de um usuário logado;
-- [x] Deve ser possivel obter o número de check-ins realizado pelo usuário logado;
-- [x] Deve ser possivel o usuário obter seu histórico de check-ins;
-- [x] Deve ser possivel o usuário buscar academias próximas (até 10km);
-- [x] Deve ser possivel o usuário buscar academias pelo nome;
-- [x] Deve ser possivel o usuário realizar check-in em uma academia;
-- [x] Deve ser possivel validar o check-in de um usuário;
-- [x] Deve ser possivel cadastrar uma academia;
+### Requisitos Funcionais
+- Deve ser possível cadastrar
+  - Nome
+  - E-mail
+  - Área de atuação
+  - Foto de perfil
+- Deve ser possível gerar ticket;
+  - Cada ticket deve ter um identificador único
+  - Apenas deve ser gerado um ticket para cada usuário
+- Deve ser possivel gerar link do ticket;
+  - O sistema deve gerar um link único para cada usuário
+  - O link deve ser fácil de compartilhar nas redes sociais(S.E.O) 
+- Deve validar os campos
+  - O e-mail
+  - foto de perfil deve estar no formato (jpg, png)
+- Deve ser possível qualquer pessoa visitar o link
+  - Nome
+  - Foto de perfil
+  - Área de atuação
+ 
+### Requisitos Não-Funcionais
 
-## RNs (Regras de negócio)
-- [x] O usuário não pode se cadastrar com um e-mail duplicado;
-- [x] O usuário não pode fazer 2 check-ins no mesmo dia;
-- [x] O usuário não pode fazer check-in se não estiver perto (100m) da academia;
-- [x] O check-in só pode ser validado até 20 minutos após criado;
-- [x] O check-in só pode ser validado por administradores;
-- [x] A academia só pode ser cadastrada por administradores;
+- Desempenho
+  - O sistema deve gerar o ticket e link no máximo 5s após o envio dos dados
+- Usabilidade
+  - A interface do usuário deve ser simples, fácil e interativo
+  - O sistema responsivo e funcionar em todos os dispositivos móveis
+- Segurança
+  - O sistema deve proteger contra ataques comuns(SQL Injection, XSS)
+  - O sistema deve armazenar de forma segura os dados do usuário
+  - O sistema deve ser a prova de bots
+- Disponibilidade
+  - O sistema deve estar disponível apenas quando temos eventos
+- Escalabilidade
+  - O sistema deve suportar até 1000 pessoas ao mesmo tempo.
+- Tecnologias
+  - O sistema deverá usar as seguintes tecnologias para o backend: 
+     - Linguagem com PHP
+     - Framework Laravel
+     - Postman para documentar a API
+     - O bakcend deverá usar o MongoDB
+     - Arquitetura MVC
+     - Restfull API
+     - CI/CD
+     - Testes unitários
+  - O sistema deveŕa usar as seguintes tecnologias para o frontend:
+    - React.JS com vite
+    - Typescript
+    - Tailwindcss
+    - React Hook Form + ZOD ou Yup
+    - ReactQuery + Axios para consumo de API
+    - Eslint para formatar o código
+    - CI/CD
+    - Testes unitários
+    - 
 
-## RNFs (Requisitos Não-Funcionais)
-- [x] A senha do usuário precisa estar criptografada;
-- [x] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
-- [x] Todas listas de dados precisam estar paginadas com 20 itens por página;
-- [x] O usuário deve ser identificado por um JWT(JSON WEB TOKEN);
+### Regras de Negócio
+- Unicidade de E-mail
+  - Cada e-mail deve ser único no sistema.
+- Nome
+  - Deve ser obrigatório informar no mínimo um nome e no máximo dois
+  - Cada nome deve ter no mínimo 2 caracteres
+  - Cada nome deve ter no máximo 12 caracteres
+  - O nome deve conter apenas letras
+- Formato da foto de perfil
+  - A foto deve ser no formato (jpg ou png)
+  - O tamanho máximo da foto de perfil deve ser de 1MB
+- Validade do Link
+  - o link gerado ver ser válido até o dia do evento + 1 dia
+- Área de atuação
+  - O usuário não deve digitar a área
+  - O sistema disponibiliza a lista de áreas de atuação
+- Notificações ou feedback
+  - o sistema deve retornar uma confirmação para o usuário com uma modal.
+  - o sistema pode enviar uma confirmação para o usuário por email.
+  - o sistema pode enviar notificações para o usuário quando o seu link for acessado.
+- Compartilhamente dos dados
+  - Informações sensíveis, como email, não devem ser exibidos.
+  - Ao compoartilhar o link nas redes sociais, apenas devem ser partilhado os dados:
+    - Nome
+    - Foto de perfil
+    - Áŕea de atuação
+   
+    
+### Fluxo de Uso
+1 - Cadastro
+  - Usuário acessa a página de cadastro
+  - Preenche o formulário com:
+    - Nome
+    - Email
+    - Áre de atuação
+    - Foto de perfil
+  - Submete o formulário
+2 - Geração do ticket e Link
+    - Sistema valida os dados
+    - Sistema gera o ticket e o link referente para o usuário
+    - Sistema exibe o link e permite compartilhar para as redes sociais(X, Linkedin, Facebook)
+3 - Visualização do ticket
+    - Qualquer pessoa pode acessar o link e visualizar o ticket do usuário referente ao ticket.
+4 - Compartilhamento
+    - Usuário pode compartilhar o link gerado para as redes sociais
+5 - Baixar o ticket
+    - Usuário pode baixar o ticket gerado como uma imagem no formato jpg
