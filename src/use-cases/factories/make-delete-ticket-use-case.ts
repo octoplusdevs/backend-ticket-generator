@@ -1,9 +1,9 @@
 import { PrismaTicketsRepository } from "@/repositories/prisma/prisma-tickets-repository"
-import { GetTicketUseCase } from "../get-ticket"
+import { DeleteTicketUseCase } from "../delete-ticket"
 
-export function makeGetTicketUseCase() {
+export function makeDeleteTicketUseCase() {
   const ticketsRepository = new PrismaTicketsRepository()
-  const useCase = new GetTicketUseCase(ticketsRepository)
+  const useCase = new DeleteTicketUseCase(ticketsRepository)
 
   return useCase
 }

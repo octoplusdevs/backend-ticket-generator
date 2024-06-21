@@ -25,4 +25,13 @@ export class InMemoryTicketsRepository implements TicketsRepository {
     this.items.push(ticket)
     return ticket
   }
+
+  async delete(id: string){
+    const ticketIndex = this.items.findIndex((item) => item.id === id)
+    this.items.slice(ticketIndex, 1)
+    if(this.items.findIndex((item) => item.id === id)){
+      return false
+    }
+    return true
+  }
 }

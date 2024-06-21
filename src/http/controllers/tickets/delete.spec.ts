@@ -10,7 +10,7 @@ describe('Ticket (e2e)', () => {
   afterAll(async () => {
     await app.close()
   })
-  it('should be able to get ticket', async () => {
+  it('should be able to delete a ticket', async () => {
     const occupation = await prisma.occupation.create({
       data: {
         name: 'Software Engineer',
@@ -27,14 +27,10 @@ describe('Ticket (e2e)', () => {
       }
     })
     const ticketResponse = await request(app.server)
-      .get(`/${ticket.id}`)
+      .delete(`/${ticket.id}`)
       .send()
 
     expect(ticketResponse.statusCode).toEqual(200)
-    expect(ticketResponse.body.ticket).toEqual(
-      expect.objectContaining({
-        fullName: 'John Doe',
-      }),
-    )
+
   })
 })
