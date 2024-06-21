@@ -12,4 +12,5 @@ export type TicketCreateInput = {
 export interface TicketsRepository {
   findById(id: string): Promise<Ticket | null>
   create(data: TicketCreateInput): Promise<Ticket>
+  delete(id: string): Promise<Boolean>
 }
