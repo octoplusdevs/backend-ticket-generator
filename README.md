@@ -4,8 +4,7 @@ para serem compartilhado nas redes
 sociais.
 Basicamente o usuário entra na aplicação informa o seu nome, email, area de atuação e carrega
 uma foto de perfil.
-Lhe é gerado um ticket e um link para ele compartilhar nas redes sociais.
-
+é gerado um ticket e um link para ele compartilhar nas redes sociais.
 
 
 ### Requisitos Funcionais
